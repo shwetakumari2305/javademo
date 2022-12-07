@@ -6,7 +6,7 @@ services:
       - "8080:8080"
     container_name: student_management
     networks:
-      - net1
+      - net2
     environment:
      - spring.datasource.url=jdbc:mysql://mySql_service:3306/sms
      - spring.datasource.username=root
