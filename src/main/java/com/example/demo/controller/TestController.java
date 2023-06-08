@@ -8,6 +8,6 @@ public class TestController {
 
 @GetMapping("/")
 public String health() {
-  return "Welcome to Students Boards";
+  return "Welcome to Global logic !!";
 }
 }
