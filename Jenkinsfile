@@ -33,4 +33,10 @@ node {
     stage('Run Docker Image') {
         sh 'docker run -d -p 80:8080 --name javademo shwetashukla23/javademo:latest'
     }
+    stage('k8s deployment') {
+    sshagent(['k8sMaster']) {
+          sh "ssh -o StrictHostKeyChecking=no -l ec2-user 172.31.23.244 kubectl create deployment sms --image=shwetashukla23/javademo:latest --replicas=1 --port=8080 "
+          sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 172.31.23.244 kubectl expose deployment sms --type=NodePort --name=smssvc --port=8080 --target-port=8080 '
+    }
+  }
 }
